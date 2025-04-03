@@ -21,15 +21,33 @@ FetchContent_Declare(
         GIT_REPOSITORY https://github.com/nemtrif/utfcpp.git
         GIT_TAG v4.0.6 # Use a specific tag for stability!
 )
-FetchContent_MakeAvailable(htmlparser utf8cpp)
 
-file(GLOB_RECURSE SOURCES Z-Library/src/*.cpp)
-file(GLOB_RECURSE HEADERS Z-Library/include/*.hpp)
+# --- Add nlohmann/json dependency ---
+FetchContent_Declare(
+        nlohmann_json             # Name
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.11.3           # Use a specific stable tag
+)
+FetchContent_MakeAvailable(nlohmann_json)
+# --- End Add nlohmann/json ---
+
+FetchContent_Declare(
+        cpr
+        GIT_REPOSITORY https://github.com/libcpr/cpr.git
+        GIT_TAG 1.11.2
+)
+option(CPR_BUILD_TESTS "Build CPR tests" OFF)
+set(CPR_USE_SYSTEM_CURL OFF CACHE BOOL "Use system curl")
+
+FetchContent_MakeAvailable(htmlparser utf8cpp cpr nlohmann_json)
+
+file(GLOB_RECURSE SOURCES src/*.cpp)
+file(GLOB_RECURSE HEADERS include/*.hpp)
 
 add_library(zlibrary SHARED ${SOURCES} ${HEADERS})
 target_compile_definitions(zlibrary PRIVATE ZLIBRARY_EXPORTS)
-target_include_directories(zlibrary PUBLIC Z-Library/include)
-target_link_libraries(zlibrary PRIVATE HtmlParser utf8cpp)
+target_include_directories(zlibrary PUBLIC include)
+target_link_libraries(zlibrary PRIVATE HtmlParser utf8cpp cpr nlohmann_json::nlohmann_json)
 
 #add_library(zlibrary_static STATIC ${SOURCES} ${HEADERS})
 #target_compile_definitions(zlibrary_static PRIVATE ZLIBRARY_STATIC)
@@ -38,7 +56,7 @@ target_link_libraries(zlibrary PRIVATE HtmlParser utf8cpp)
 
 
 add_executable(zlibrary_test test/main.cpp)
-target_link_libraries(zlibrary_test PRIVATE zlibrary)
+target_link_libraries(zlibrary_test PRIVATE zlibrary  cpr::cpr)
 
 # --- Platform specific settings for MSVC (Optional but good practice) ---
 if(MSVC)
