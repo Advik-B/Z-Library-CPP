@@ -2,11 +2,17 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/cpr-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/htmlparser-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/nlohmann_json-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/utf8cpp-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/utf8cpp-src/extern/ftest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/zlib-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/cpr-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/htmlparser-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/nlohmann_json-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/utf8cpp-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/utf8cpp-src/extern/ftest" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/zlib-src" vcs="Git" />
   </component>
 </project>
