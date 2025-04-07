@@ -5,7 +5,7 @@
 #ifndef NOCACHE_HPP
 #define NOCACHE_HPP
 
-#include <zlibrary/ZCacheType.hpp>
+#include <zlibrary/CacheType.hpp>
 #include <zlibrary/Export.hpp>
 
 namespace zlibrary {
@@ -13,7 +13,7 @@ namespace zlibrary {
     /*
     Does not cache anything anywhere.
      */
-    class NoCache : public ZCacheType {
+    class ZLIBRARY_API NoCache : public ICache {
          void set(const string & key, const string& value) override;
          string get(const string & key) override;
          bool get(const string &key, string &result_string) override;
