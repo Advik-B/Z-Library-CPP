@@ -10,5 +10,10 @@ int main() {
     auto api = zlibrary::ZLibraryAPI();
     api.getCache()->purge();
     cout << "Yo";
+    try {
+        api.get("x");
+    } catch (std::exception &e) {
+        cout << "Error: " << e.what() << "\n";
+    }
     return 0;
 }
