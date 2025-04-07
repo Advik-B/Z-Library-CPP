@@ -14,14 +14,19 @@ namespace zlibrary {
 	using std::string;
     class ZLIBRARY_API ZLibraryAPI {
       	private:
-        	string base_url;
-            ZCacheTypePtr cache;
+            CachePtr cache;
+            string base_url;
 
 		public:
       		cpr::Session session;
-            void setBaseURL(const string& url);
-            string getBaseURL() const;
+            void setCache(CachePtr new_cache);
+            void removeCache();
+            void setBaseURL(const string& new_base_url);
+            cpr::Response get(const string &path);
+            cpr::Response post(const string &path, const cpr::Payload &payload);
 
+            ZLibraryAPI(cpr::Session &session);
+            ZLibraryAPI();
     };
 }
 
