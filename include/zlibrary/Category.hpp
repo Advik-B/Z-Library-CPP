@@ -7,7 +7,7 @@
 
 #include <zlibrary/Export.hpp>
 #include <string>
-#include <set>
+#include <unordered_set>
 
 namespace zlibrary {
     using std::string;
@@ -17,7 +17,7 @@ namespace zlibrary {
         const string name;
     };
 
-    static ZLIBRARY_API std::set<Category> loaded_categories; // Will populate as the library gets used
+    static ZLIBRARY_API std::unordered_set<Category> loaded_categories; // Will populate as the library gets used
 
 }
 
