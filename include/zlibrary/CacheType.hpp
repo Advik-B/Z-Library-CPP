@@ -13,9 +13,9 @@ namespace zlibrary {
     using std::string;
     using std::shared_ptr;
 
-    class ZLIBRARY_API ZCacheType {
+    class ZLIBRARY_API ICache {
     public:
-        virtual ~ZCacheType() = default;
+        virtual ~ICache() = default;
 
         virtual void set(const string & key, const string& value) = 0;
         virtual string get(const string & key) = 0;
@@ -23,7 +23,7 @@ namespace zlibrary {
         virtual void purge() = 0;
     };
 
-    ZLIBRARY_API typedef shared_ptr<ZCacheType> CachePtr;
+    ZLIBRARY_API typedef shared_ptr<ICache> CachePtr;
 }
 
 #endif //ZCACHETYPE_HPP
