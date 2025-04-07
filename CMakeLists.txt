@@ -46,8 +46,12 @@ FetchContent_MakeAvailable(htmlparser utf8cpp cpr nlohmann_json)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS include/*.hpp)
 
-add_library(zlibrary SHARED ${SOURCES} ${HEADERS})
-target_compile_definitions(zlibrary PRIVATE ZLIBRARY_EXPORTS)
+add_library(zlibrary ${SOURCES} ${HEADERS})
+# If the the library being built is shared, set the export macro
+if(BUILD_SHARED_LIBS)
+    target_compile_definitions(zlibrary PRIVATE ZLIBRARY_EXPORTS)
+endif ()
+
 target_include_directories(zlibrary PUBLIC include)
 target_link_libraries(zlibrary PRIVATE HtmlParser utf8cpp cpr nlohmann_json::nlohmann_json)
 
