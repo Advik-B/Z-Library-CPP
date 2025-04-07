@@ -45,7 +45,12 @@ cpr::Response zlibrary::ZLibraryAPI::get(const string &path) {
     // Check if the response is successful
     if (response.status_code != 200) {
         // Handle error
-        throw std::runtime_error("Failed to fetch data from ZLibrary API");
+        throw std::runtime_error(""
+                                 "Failed to fetch data from ZLibrary API\n"
+                                 "Path: " + path + "\n"
+                                 "Status code: " + std::to_string(response.status_code) + "\n"
+                                 "Full URL: " + full_url + "\n"
+                                 );
     }
     return response;
 }
