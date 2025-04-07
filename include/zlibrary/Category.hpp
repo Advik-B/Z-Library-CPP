@@ -7,6 +7,7 @@
 
 #include <zlibrary/Export.hpp>
 #include <string>
+#include <set>
 
 namespace zlibrary {
     using std::string;
@@ -15,6 +16,9 @@ namespace zlibrary {
         const unsigned int id;
         const string name;
     };
+
+    static ZLIBRARY_API std::set<Category> loaded_categories; // Will populate as the library gets used
+
 }
 
 #endif //CATEGORY_HPP
