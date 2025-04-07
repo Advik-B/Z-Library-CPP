@@ -1,3 +1,10 @@
+#include <zlibrary/Enums.hpp>
+
+#include <iostream>
+using namespace std;
+
 int main() {
-    return 0;
+    constexpr auto lang = zlibrary::Language::ARABIC;
+    const string langStr = toString(lang);
+    cout << "Language enum to string: " << langStr << endl;
 }
