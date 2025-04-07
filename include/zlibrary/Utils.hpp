@@ -8,9 +8,8 @@
 
 namespace fs = std::filesystem;
 
-ZLIBRARY_API std::string trim(const std::string& str);
-ZLIBRARY_API void setup_utf8_console();
-ZLIBRARY_API std::string sanitize_filename(std::string filename);
-ZLIBRARY_API std::string url_join(const std::string& base, const std::string& relative);
+std::string trim(const std::string& str);
+std::string sanitize_filename(std::string filename);
+std::string url_join(const std::string& base, const std::string& relative);
 
 #endif //UTILS_HPP
