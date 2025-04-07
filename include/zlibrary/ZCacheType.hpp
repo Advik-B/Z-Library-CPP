@@ -20,7 +20,7 @@ namespace zlibrary {
             virtual void purge() = 0;
     };
 
-    typedef shared_ptr<ZCacheType> ZCacheTypePtr;
+    typedef shared_ptr<ZCacheType> CachePtr;
 }
 
 #endif //ZCACHETYPE_HPP
