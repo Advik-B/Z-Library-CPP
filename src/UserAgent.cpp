@@ -185,20 +185,20 @@ const std::vector<BrowserInfo> browser_database = {
 // Public Function Implementation
 //-----------------------------------------------------------------------------
 
-std::string generateUltraUserAgent(
+std::string generate_useragent(
     OsType desired_os,
     BrowserType desired_browser,
     Architecture desired_arch,
     bool simulate_webview)
 {
     // Use anonymous namespace functions/data directly
-    auto& rng = getRandomEngine(); // Get the engine instance
+    // auto& rng = getRandomEngine(); // Get the engine instance
 
     // --- Steps 1-7 from previous implementation ---
     // (The entire logic of selecting OS, Browser, Device, generating versions,
     // and assembling the string goes here, referencing the data and helper
     // functions defined in the anonymous namespace above).
-    // ... (Copy the full logic from the previous `generateUltraUserAgent` here) ...
+    // ... (Copy the full logic from the previous `generate_useragent` here) ...
 
     // --- Placeholder for the logic (copy from previous answer) ---
     // 1. Filter OS List
@@ -241,13 +241,13 @@ std::string generateUltraUserAgent(
     Architecture final_architecture = selected_os->architecture; // Arch is determined by the chosen OS entry
 
     // 3. Select Device (if mobile) & Generate dynamic parts
-    const DeviceInfo* selected_device = nullptr;
     std::string device_token_part = "";
     std::string android_build_token = ""; // Generate dynamically if needed
 
      if (!selected_os->possible_devices.empty()) {
         const std::string& device_key = getRandomElement(selected_os->possible_devices);
         if (device_database.count(device_key)) {
+            const DeviceInfo *selected_device = nullptr;
             selected_device = &device_database.at(device_key);
             if (selected_os->type == OsType::ANDROID && selected_device->model_id != "Generic Mobile") {
                  if(selected_os->base_token.find(selected_device->model_id) == std::string::npos) {
