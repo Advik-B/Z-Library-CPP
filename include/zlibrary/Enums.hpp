@@ -5,10 +5,7 @@
 #ifndef ENUMS_HPP
 #define ENUMS_HPP
 
-#include <iostream>
 #include <string>
-#include <unordered_map>
-#include <stdexcept>
 #include <vector>
 #include <utility>
 #include <zlibrary/Export.hpp>
@@ -41,33 +38,10 @@ static const std::vector<std::pair<Extension, std::string>> extension_map_data =
 };
 
 // Function to get the string representation of Extension
-ZLIBRARY_API inline std::string toString(Extension e) {
-    // Simple linear search is fine for small enums if map lookup isn't needed often
-    for(const auto& pair : extension_map_data) {
-        if (pair.first == e) {
-            return pair.second;
-        }
-    }
-    throw std::logic_error("Invalid Extension enum value"); // Should not happen
-}
+ZLIBRARY_API inline std::string toString(Extension e);
 
 // Function to get Extension from string
-ZLIBRARY_API inline Extension stringToExtension(const std::string& s) {
-    // Create the map on first call (thread-safe in C++11+)
-    static const std::unordered_map<std::string, Extension> lookup_map = [] {
-        std::unordered_map<std::string, Extension> map;
-        for (const auto& pair : extension_map_data) {
-            map[pair.second] = pair.first;
-        }
-        return map;
-    }();
-
-    auto it = lookup_map.find(s);
-    if (it == lookup_map.end()) {
-        throw std::runtime_error("Invalid string for Extension enum: " + s);
-    }
-    return it->second;
-}
+ZLIBRARY_API inline Extension stringToExtension(const std::string& s);
 
 
 //-----------------------------------------------------
@@ -87,31 +61,10 @@ static const std::vector<std::pair<OrderOptions, std::string>> orderoptions_map_
 };
 
 // Function to get the string representation of OrderOptions
-ZLIBRARY_API inline std::string toString(OrderOptions o) {
-    for(const auto& pair : orderoptions_map_data) {
-        if (pair.first == o) {
-            return pair.second;
-        }
-    }
-    throw std::logic_error("Invalid OrderOptions enum value"); // Should not happen
-}
+ZLIBRARY_API inline std::string toString(OrderOptions o);
 
 // Function to get OrderOptions from string
-ZLIBRARY_API inline OrderOptions stringToOrderOptions(const std::string& s) {
-    static const std::unordered_map<std::string, OrderOptions> lookup_map = [] {
-        std::unordered_map<std::string, OrderOptions> map;
-        for (const auto& pair : orderoptions_map_data) {
-            map[pair.second] = pair.first;
-        }
-        return map;
-    }();
-
-    auto it = lookup_map.find(s);
-    if (it == lookup_map.end()) {
-        throw std::runtime_error("Invalid string for OrderOptions enum: " + s);
-    }
-    return it->second;
-}
+ZLIBRARY_API inline OrderOptions stringToOrderOptions(const std::string& s);
 
 
 //-----------------------------------------------------
@@ -213,36 +166,10 @@ static const std::vector<std::pair<Language, std::string>> language_map_data = {
 };
 
 // Function to get the string representation of Language
-ZLIBRARY_API inline std::string toString(Language lang) {
-    // For very large enums, a map lookup might be preferred even for enum->string,
-    // but linear search is simple.
-    for(const auto& pair : language_map_data) {
-        if (pair.first == lang) {
-            return pair.second;
-        }
-    }
-    throw std::logic_error("Invalid Language enum value"); // Should not happen
-}
+ZLIBRARY_API inline std::string toString(Language lang);
 
 // Function to get Language from string
-ZLIBRARY_API inline Language stringToLanguage(const std::string& s) {
-    // Create the map on first call (thread-safe in C++11+)
-    static const std::unordered_map<std::string, Language> lookup_map = [] {
-        std::unordered_map<std::string, Language> map;
-        for (const auto& pair : language_map_data) {
-            map[pair.second] = pair.first;
-        }
-        return map;
-    }();
-
-    auto it = lookup_map.find(s);
-    if (it == lookup_map.end()) {
-        throw std::runtime_error("Invalid string for Language enum: " + s);
-    }
-    return it->second;
-}
-
-
+ZLIBRARY_API inline Language stringToLanguage(const std::string& s);
 }
 
 #endif //ENUMS_HPP
