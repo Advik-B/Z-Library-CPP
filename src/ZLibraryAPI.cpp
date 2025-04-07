@@ -11,7 +11,7 @@
 using namespace std;
 
 void zlibrary::ZLibraryAPI::setCache(const CachePtr &new_cache) {
-    this->cache->purge();
+    // this->cache->purge(); // Uncomment if you want to purge the old cache before setting a new one
     this->cache = new_cache;
 }
 void zlibrary::ZLibraryAPI::removeCache() {
@@ -29,9 +29,8 @@ cpr::Response zlibrary::ZLibraryAPI::post(const string &path, const cpr::Payload
 }
 zlibrary::ZLibraryAPI::ZLibraryAPI() {
     this->base_url = "https://z-library.sk/";
-    this->session = make_shared<cpr::Session>();
-    session->SetUrl(base_url);
-    session->SetHeader(
+    session.SetUrl(base_url);
+    session.SetHeader(
             {
                     {"User-Agent", utils::generate_useragent()},
                     {"Accept-Language", "en-US,en;q=0.9"},
@@ -43,6 +42,9 @@ zlibrary::ZLibraryAPI::ZLibraryAPI() {
                  {"Sec-Fetch-Mode", "navigate"},
                  {"Sec-Fetch-Site", "same-origin"}, // Adjust if needed, but good default
                  {"Referer",  base_url }});
-    cache = std::make_shared<zlibrary::NoCache>();
+    removeCache();
+}
 
+zlibrary::CachePtr zlibrary::ZLibraryAPI::getCache() {
+    return this->cache;
 }
