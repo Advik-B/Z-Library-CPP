@@ -4,6 +4,8 @@ project("Z Library Wrapper")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+
 
 include(FetchContent)
 FetchContent_Declare(
@@ -49,14 +51,8 @@ target_compile_definitions(zlibrary PRIVATE ZLIBRARY_EXPORTS)
 target_include_directories(zlibrary PUBLIC include)
 target_link_libraries(zlibrary PRIVATE HtmlParser utf8cpp cpr nlohmann_json::nlohmann_json)
 
-#add_library(zlibrary_static STATIC ${SOURCES} ${HEADERS})
-#target_compile_definitions(zlibrary_static PRIVATE ZLIBRARY_STATIC)
-#target_include_directories(zlibrary_static PUBLIC Z-Library/include)
-#target_link_libraries(zlibrary_static PRIVATE HtmlParser utf8cpp)
-
-
 add_executable(zlibrary_test test/main.cpp)
-target_link_libraries(zlibrary_test PRIVATE zlibrary  cpr::cpr)
+target_link_libraries(zlibrary_test PRIVATE zlibrary)
 
 # --- Platform specific settings for MSVC (Optional but good practice) ---
 if(MSVC)
