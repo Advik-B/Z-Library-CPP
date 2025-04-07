@@ -33,7 +33,7 @@ option(HTMLPARSER_BUILD_TESTS "Build tests" OFF)
 option(HTMLPARSER_BUILD_BENCHMARKS "Build benchmarks" OFF)
 option(HTMLPARSER_BUILD_EXAMPLES "Build examples" OFF)
 # Explicitly tell HtmlParser to build static if it checks BUILD_SHARED_LIBS
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build HtmlParser static" FORCE)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "Build HtmlParser static" FORCE)
 
 # Declare utf8cpp dependency (header-only)
 FetchContent_Declare(
@@ -97,12 +97,12 @@ target_include_directories(zlibrary PUBLIC include)
 # Assuming HtmlParser creates target 'HtmlParser' and utf8cpp creates 'utf8cpp' (INTERFACE).
 # cpr creates 'cpr::cpr'. nlohmann_json creates 'nlohmann_json::nlohmann_json'.
 target_link_libraries(zlibrary
-        PRIVATE
+        PUBLIC
         HtmlParser # Check if HtmlParser::HtmlParser exists
         # utf8cpp::utf8cpp # Often INTERFACE targets exist, check utf8cpp CMake
-        cpr::cpr
-        nlohmann_json::nlohmann_json
-)
+        cpr::cpr nlohmann_json
+        )
+
 # If utf8cpp is truly header-only with no target, just ensure include dirs are set (MakeAvailable does this)
 # target_link_libraries(zlibrary PRIVATE utf8cpp) # Link if it provides an INTERFACE library target
 
