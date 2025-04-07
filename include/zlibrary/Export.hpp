@@ -6,7 +6,7 @@
 #define EXPORT_HPP
 
 // For Windows DLL export
-#ifdef _WIN32
+#ifdef _WINDOWS
 	#ifdef ZLIBRARY_EXPORTS
         // If we are building the DLL, export the functions
 		#define ZLIBRARY_API __declspec(dllexport)
