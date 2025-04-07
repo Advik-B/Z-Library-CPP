@@ -10,9 +10,17 @@
 
 using namespace std;
 
-void zlibrary::ZLibraryAPI::setCache(CachePtr new_cache) {}
-void zlibrary::ZLibraryAPI::removeCache() {}
-void zlibrary::ZLibraryAPI::setBaseURL(const string &new_base_url) {}
+void zlibrary::ZLibraryAPI::setCache(const CachePtr &new_cache) {
+    this->cache->purge();
+    this->cache = new_cache;
+}
+void zlibrary::ZLibraryAPI::removeCache() {
+    this->cache = std::make_shared<zlibrary::NoCache>();
+}
+
+void zlibrary::ZLibraryAPI::setBaseURL(const string &new_base_url) {
+    this->base_url = new_base_url;
+}
 cpr::Response zlibrary::ZLibraryAPI::get(const string &path) {
     return cpr::Get(path);
 }
