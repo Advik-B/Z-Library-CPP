@@ -8,7 +8,7 @@ int main() {
     const string langStr = toString(lang);
     cout << "Lang: " + langStr << "\n";
     auto api = zlibrary::ZLibraryAPI();
-    cout << api.get("https://httpbin.org/get").text;
-    cout << "\n";
+    api.getCache()->purge();
+    cout << "Yo";
     return 0;
 }
