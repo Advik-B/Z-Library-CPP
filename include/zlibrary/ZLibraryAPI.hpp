@@ -26,7 +26,7 @@ namespace zlibrary {
         void setCache(const CachePtr &new_cache);
         void removeCache();
         void setBaseURL(const string &new_base_url);
-        CachePtr getCache();
+        inline CachePtr getCache();
         cpr::Response get(const string &path);
         cpr::Response post(const string &path, const cpr::Payload &payload);
 
