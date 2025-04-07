@@ -31,7 +31,7 @@ namespace zlibrary {
          *                        a UA string resembling an Android System WebView UA.
          * @return A generated user agent string, or an error message if generation fails.
          */
-        ZLIBRARY_API std::string generateUltraUserAgent(
+        ZLIBRARY_API std::string generate_useragent(
             OsType desired_os = OsType::ANY,
             BrowserType desired_browser = BrowserType::ANY,
             Architecture desired_arch = Architecture::ANY,
