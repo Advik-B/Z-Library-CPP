@@ -20,6 +20,8 @@ namespace zlibrary {
         string base_url;
 
     public:
+        static std::string url_join(const std::string& base, const std::string& path);
+
         cpr::Session session;
         void setCache(const CachePtr &new_cache);
         void removeCache();
