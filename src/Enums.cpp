@@ -34,7 +34,7 @@ namespace zlibrary {
         return it->second;
     }
 
-    std::string toString(OrderOptions o) {
+    std::string toString(const OrderOptions o) {
         for(const auto&[fst, snd] : orderoptions_map_data) {
             if (fst == o) {
                 return snd;
@@ -59,7 +59,7 @@ namespace zlibrary {
         return it->second;
     }
 
-    std::string toString(Language lang) {
+    std::string toString(const Language lang) {
         // For very large enums, a map lookup might be preferred even for enum->string,
         // but linear search is simple.
         for(const auto&[fst, snd] : language_map_data) {
