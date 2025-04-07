@@ -6,7 +6,7 @@
 #define ZLIBRARYAPI_HPP
 
 #include <zlibrary/Export.hpp>
-#include <zlibrary/ZCacheType.hpp>
+#include <zlibrary/CacheType.hpp>
 #include <cpr/cpr.h>
 #include <string>
 
@@ -15,20 +15,21 @@ namespace zlibrary {
 
 
     class ZLIBRARY_API ZLibraryAPI {
-      	private:
-            CachePtr cache;
-            string base_url;
+    private:
+        CachePtr cache;
+        string base_url;
 
-		public:
-      		shared_ptr<cpr::Session> session;
-            void setCache(const CachePtr &new_cache);
-            void removeCache();
-            void setBaseURL(const string& new_base_url);
-            cpr::Response get(const string &path);
-            cpr::Response post(const string &path, const cpr::Payload &payload);
+    public:
+        cpr::Session session;
+        void setCache(const CachePtr &new_cache);
+        void removeCache();
+        void setBaseURL(const string &new_base_url);
+        CachePtr getCache();
+        cpr::Response get(const string &path);
+        cpr::Response post(const string &path, const cpr::Payload &payload);
 
-            ZLibraryAPI();
+        ZLibraryAPI();
     };
-}
+} // namespace zlibrary
 
 #endif //ZLIBRARYAPI_HPP
