@@ -21,7 +21,7 @@ namespace zlibrary {
 
 		public:
       		shared_ptr<cpr::Session> session;
-            void setCache(CachePtr new_cache);
+            void setCache(const CachePtr &new_cache);
             void removeCache();
             void setBaseURL(const string& new_base_url);
             cpr::Response get(const string &path);
