@@ -165,6 +165,11 @@ static const std::vector<std::pair<Language, std::string>> language_map_data = {
     {Language::YIDDISH, "yiddish"}
 };
 
+enum class TypeOfContent {
+    BOOKS,
+    ARTICLES,
+};
+
 // Function to get the string representation of Language
 ZLIBRARY_API inline std::string toString(Language lang);
 
