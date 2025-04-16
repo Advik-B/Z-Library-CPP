@@ -35,6 +35,8 @@ namespace zlibrary {
         vector<Book> searchBooks(const ZSearchQuery &query, const OrderOptions &order = OrderOptions::POPULAR);
         Book getBook(const string &url);
         ~ZService();
+    private:
+        ZLibraryAPI *api;
     };
 
 };
